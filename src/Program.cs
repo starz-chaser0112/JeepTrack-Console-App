@@ -6,273 +6,278 @@ class Jeeptrack
     // Welcoming Message
     static void WelcomeMessage()
     {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine();
         Console.WriteLine("===================== Welcome to JeepTrack! =====================");
+        Console.ResetColor();
     }
 
     // Available Locations
     static void DisplayLocations()
     {
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("                 ----- Available Locations -----\n");
-        Console.WriteLine("> San Pablo City \t\t\t > SM San Pablo");
-        Console.WriteLine("> LSPU-San Pablo City Campus \t\t > Liliw");
-        Console.WriteLine("> Nagcarlan \t\t\t\t > Tiaong");
-        Console.WriteLine("> Calauan \t\t\t\t > Los Banos");
-        Console.WriteLine("> Sta Cruz");
+        Console.WriteLine("\t> Lalakay\t\t\t > Bambang Highway");
+        Console.WriteLine("\t> Maahas \t\t\t > Batong Malaki");
+        Console.WriteLine("\t> Anos   \t\t\t > San Antonio");
+        Console.WriteLine("\t> UPLB   \t\t\t > Timugan");
+        Console.ResetColor();
     }
 
     // Passenger Type
     static void PassengerTypes()
     {
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("                 ----- Passenger Type -----\n");
-        Console.WriteLine("> Regular \t\t\t\t > Student");
-        Console.WriteLine("> PWD \t\t\t\t\t > Senior Citizen");
+        Console.WriteLine("\t > Regular \t\t\t\t > Student");
+        Console.WriteLine("\t > PWD \t\t\t\t\t > Senior Citizen");
         Console.WriteLine();
+        Console.ResetColor();
     }
 
-        // Main Program
-    static void Main()
+    static void LocationMissing()
     {
-        // Display Welcome Message
-        WelcomeMessage();
-        
-            string[] locations = {"SAN PABLO CITY", "SM SAN PABLO", "LSPU-SAN PABLO CITY CAMPUS", "LILIW", "NAGCARLAN", "TIAONG", "CALAUAN", "LOS BANOS", "STA CRUZ"};
-            string currentLocation;
-            string destination;
-        // Current Location 
-        
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("\t\t ----- LOCATION NOT FOUND! -----");
+        Console.WriteLine();
+        Console.ResetColor();
+    }
 
-        while (true)
+    static bool RouteValidation(string origin, string destination, ref double travelDistance, ref double travelTime)
+    {
+        string[] fromLocations = { "MAAHAS", "SAN ANTONIO", "BATONG MALAKI", "BATONG MALAKI", "ANOS", "TIMUGAN", "BAMBANG HIGHWAY" };
+        string[] toLocations = { "SAN ANTONIO", "BATONG MALAKI", "UPLB", "ANOS", "TIMUGAN", "BAMBANG HIGHWAY", "LALAKAY" };
+        double[] mainDistances = { 4.7, 4.0, 2.2, 6.8, 1.7, 3.2, 6.3 };
+        double[] reverseDistances = { 1.3, 4.0, 2.2, 6.8, 1.7, 3.2, 4.4 };
+        double[] maintravelTime = { 9.0, 15.0, 6.0, 15.0, 5.0, 5.0, 16.0 };
+        double[] reversetravelTime = { 3.0, 15.0, 9.0, 15.0, 5.0, 5.0, 9.0 };
+
+        for (int i = 0; i < fromLocations.Length; i++)
         {
-            // Display Available Locations
-            Console.WriteLine();
-            DisplayLocations();
-            Console.WriteLine();
-            
-            // Input Current Location
-            Console.Write("Enter your current location (enter \"exit\" to quit): ");
-            currentLocation = (Console.ReadLine()?? "").ToUpper();
-            Console.WriteLine();
-
-            // Location Validation
-            bool locationFound = false;
-
-            for(int i = 0; i < locations.Length; i++)
+            if (fromLocations[i] == origin && toLocations[i] == destination)
             {
-                if(currentLocation == locations[i])
-                {
-                    locationFound = true;
-                    break;
-                }
-
-                else if(currentLocation.ToLower() == "exit")
-                {
-                    Console.WriteLine("Exiting the program...");
-                    return;
-                }
+                travelDistance = mainDistances[i];
+                travelTime = maintravelTime[i];
+                return true;
+            }
+            else if (fromLocations[i] == destination && toLocations[i] == origin)
+            {
+                travelDistance = reverseDistances[i];
+                travelTime = reversetravelTime[i];
+                return true;
             }
 
-            if(locationFound)
-            {
-                break;
-            }              
-            Console.WriteLine("\t\t ----- LOCATION NOT FOUND! -----");
         }
+        return false;
+    }
 
-        //Destination
+
+    // Main Program
+    static void Main()
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        string[] locations = { "LALAKAY", "MAAHAS", "ANOS", "UPLB", "BAMBANG HIGHWAY", "BATONG MALAKI", "SAN ANTONIO", "TIMUGAN" };
+
         while (true)
         {
-            // Display Available Locations
-            DisplayLocations();
-            Console.WriteLine();
+            // Display Welcome Message
+            WelcomeMessage();
 
-            // Input Destination
-            Console.Write("Enter your destination (enter \"exit\" to quit): ");
-            destination = (Console.ReadLine()?? "").ToUpper();
-            Console.WriteLine();
 
-            // Location Validation
+            string origin;
+            string destination;
 
-            bool locationFound = false;
+            // Current Location 
 
-            if(destination == currentLocation)
+
+            while (true)
+            {
+                // Display Available Locations
+                Console.WriteLine();
+                DisplayLocations();
+                Console.WriteLine();
+
+                // Input Current Location
+                Console.Write("Enter your current location: ");
+                origin = (Console.ReadLine() ?? "").Trim().ToUpper();
+                Console.WriteLine();
+
+                // Location Validation
+                bool locationFound = false;
+
+                for (int i = 0; i < locations.Length; i++)
                 {
-                    Console.WriteLine("   ----- DESTINATION AND CURRENT LOCATION MUST BE DIFFERENT! -----");
+                    if (origin == locations[i])
+                    {
+                        locationFound = true;
+                        break;
+                    }
+
+                }
+
+
+                if (locationFound)
+                {
+                    break;
+                }
+                LocationMissing();
+            }
+
+            //Destination
+            while (true)
+            {
+                // Display Available Locations
+                DisplayLocations();
+                Console.WriteLine();
+
+                // Input Destination
+                Console.Write("Enter your destination: ");
+                destination = (Console.ReadLine() ?? "").Trim().ToUpper();
+                Console.WriteLine();
+
+                // Location Validation
+
+                bool locationFound = false;
+
+                if (destination == origin)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("----- DESTINATION AND CURRENT LOCATION MUST BE DIFFERENT! -----");
                     Console.WriteLine();
+                    Console.ResetColor();
                     continue;
                 }
 
-            for(int i = 0; i < locations.Length; i++)
-            {
-                if(destination == locations[i])
+                for (int i = 0; i < locations.Length; i++)
                 {
-                    locationFound = true;
-                    break;
+                    if (destination == locations[i])
+                    {
+                        locationFound = true;
+                        break;
+                    }
+
                 }
 
-                else if(destination.ToLower() == "exit")
+                if (locationFound)
                 {
-                    Console.WriteLine("Exiting the program...");
-                    return;
-                }                
+                    break;
+                }
+                LocationMissing();
             }
-        
-            if(locationFound)
+
+            // Validating Route
+
+            double travelDistance = 0;
+            double travelTime = 0;
+
+            if (!RouteValidation(origin, destination, ref travelDistance, ref travelTime))
             {
-                break;
-            }              
-            Console.WriteLine("\t\t ----- LOCATION NOT FOUND! -----");
-            Console.WriteLine();
-        }
-        
-        // Validating Route
-        string routes = currentLocation + "-" + destination;
-        float travelDistance;
-        int travelTime;
-
-        switch (routes)
-        {
-            case "SAN PABLO CITY-SM SAN PABLO":
-            case "SM SAN PABLO-SAN PABLO CITY":
-                travelDistance = 2.9f;
-                travelTime = 9;
-            break;
-
-            case "SAN PABLO CITY-LSPU-SAN PABLO CITY CAMPUS":
-            case "LSPU-SAN PABLO CITY CAMPUS-SAN PABLO CITY":
-                travelDistance = 2.9f;
-                travelTime = 11;
-            break;
-
-            case "SAN PABLO CITY-LILIW":
-            case "LILIW-SAN PABLO CITY":
-                travelDistance = 19.8f;
-                travelTime = 46;
-            break;
-
-            case "SAN PABLO CITY-NAGCARLAN":
-            case "NAGCARLAN-SAN PABLO CITY":
-                travelDistance = 15.8f;
-                travelTime = 37;
-            break;
-
-            case "SAN PABLO CITY-TIAONG":
-            case "TIAONG-SAN PABLO CITY":
-                travelDistance = 13.1f;
-                travelTime = 24;
-            break;
-
-            case "LSPU-SAN PABLO CITY CAMPUS-CALAUAN":
-            case "CALAUAN-LSPU-SAN PABLO CITY CAMPUS":
-                travelDistance = 8.3f;
-                travelTime = 15;
-            break;
-
-            case "LSPU-SAN PABLO CITY CAMPUS-LOS BANOS":
-            case "LOS BANOS-LSPU-SAN PABLO CITY CAMPUS":
-                travelDistance = 20.7f;
-                travelTime = 40;
-            break;
-
-            case "SAN PABLO CITY-STA CRUZ":
-            case "STA CRUZ-SAN PABLO CITY":
-                travelDistance= 30.0f;
-                travelTime = 60;
-            break;
-
-            case "NAGCARLAN-LILIW":
-            case "LILIW-NAGCARLAN":
-                travelDistance= 3.2f;
-                travelTime = 9;
-            break;
-
-            case "NAGCARLAN-STA CRUZ":
-            case "STA CRUZ-NAGCARLAN":
-                travelDistance = 17;
-                travelTime = 38;
-            break;
-
-            default:
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\t\t ----- ROUTE NOT FOUND! -----");
                 Console.WriteLine();
-                return;
-        }
+                Console.ResetColor();
+                continue;
+            }
 
-        // Passenger Type
-        string[] passengerTypes = {"REGULAR", "SENIOR CITIZEN", "PWD", "STUDENT"};
-        string passengerType;
+            // Passenger Type
+            string[] passengerTypes = { "REGULAR", "SENIOR CITIZEN", "PWD", "STUDENT" };
+            string passengerType;
 
-        while (true)
-        {
-            PassengerTypes();
-
-            Console.Write("Enter passenger type: ");
-            passengerType = (Console.ReadLine()?? "").ToUpper();
-
-            bool validPassenger = false; 
-
-            for(int i = 0; i < passengerTypes.Length; i++)
+            while (true)
             {
-                if(passengerType == passengerTypes[i])
+                PassengerTypes();
+
+                Console.Write("Enter passenger type: ");
+                passengerType = (Console.ReadLine() ?? "").Trim().ToUpper();
+
+                bool validPassenger = false;
+
+                for (int i = 0; i < passengerTypes.Length; i++)
                 {
-                    validPassenger = true;
+                    if (passengerType == passengerTypes[i])
+                    {
+                        validPassenger = true;
+                        break;
+                    }
+                }
+
+                if (validPassenger)
+                {
                     break;
                 }
-            }
-
-            if(validPassenger)
-            {
-                break;
-            }
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine();
                 Console.WriteLine("\t     ----- INVALID PASSENGER TYPE! -----");
                 Console.WriteLine();
-            
+                Console.ResetColor();
+
+            }
+
+            // Fare Calculation
+
+            double initialDistance = 4.00;
+            double initialRate = 14.00;
+            double succeedingRate = 2.00;
+            double discount = 0.20;
+            double fare;
+            double finalFare;
+
+            if (travelDistance <= initialDistance)
+            {
+                fare = initialRate;
+            }
+
+            else
+            {
+                fare = (travelDistance - initialDistance) * succeedingRate + initialRate;
+            }
+
+            if (passengerType == "REGULAR")
+            {
+                discount = 0;
+                finalFare = fare;
+            }
+
+            else
+            {
+                finalFare = fare - (fare * discount);
+            }
+
+            //Travel Information
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine();
+            Console.WriteLine("=========================== JEEPTRACK ===========================");
+            Console.WriteLine("\t\t\t----- ROUTE -----");
+            Console.WriteLine($"[ {origin} > {destination} ]");
+            Console.WriteLine($"DISTANCE \t\t\t\t\t EST TRAVEL TIME");
+            Console.WriteLine($"> {travelDistance:F1} km < \t\t\t\t\t > {travelTime} minutes <");
+            Console.WriteLine("_________________________________________________________________");
+            Console.WriteLine("\t\t    ----- PASSENGER TYPE -----");
+            Console.WriteLine($"PASSENGER TYPE \t\t\t\t\t DISCOUNT");
+            Console.WriteLine($"> {passengerType} <\t\t\t\t\t > {discount:P1} < ");
+            Console.WriteLine("_________________________________________________________________");
+            Console.WriteLine("\t\t\t----- FARE -----");
+            Console.WriteLine($"BOUND TO: {origin} > {destination}\nFARE AMOUNT: ₱ {finalFare:F2}");
+            Console.WriteLine("===================== HAVE A SAFE TRAVEL! =======================");
+            Console.WriteLine();
+            Console.ResetColor();
+
+            // Returns
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("> Press any key to return... \t > Enter \"exit\" to terminate program...");
+            string choice = (Console.ReadLine() ?? "").ToLower();
+            Console.WriteLine();
+            Console.ResetColor();
+
+            if (choice == "exit")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Exiting the program...\n");
+                Console.ResetColor();
+                return;
+            }
         }
 
-        // Fare Calculation
-
-        float initialDistance = 4.00f;
-        float initialRate = 14.00f;
-        float succeedingRate = 2.00f;
-        float discount = 0.20f;
-        float fare;
-        float finalFare;
-
-        if (travelDistance <= initialDistance)
-        {
-            fare = initialRate;
-        }
-
-        else
-        {
-            fare = (travelDistance - initialDistance) * succeedingRate + initialRate;
-        }
-
-        if (passengerType == "REGULAR")
-        {
-            discount = 0;
-            finalFare = fare;
-        }
-
-        else 
-        {
-            finalFare = fare - (fare * discount);
-        } 
-
-        // Travel Information
-        Console.WriteLine();
-        Console.WriteLine("=========================== JEEPTRACK ===========================");
-        Console.WriteLine("\t\t\t----- ROUTE -----");
-        Console.WriteLine($"[ {currentLocation} > {destination} ]");
-        Console.WriteLine($"DISTANCE \t\t\t\t\t EST TRAVEL TIME");
-        Console.WriteLine($"> {travelDistance:F1} km < \t\t\t\t\t > {travelTime} minutes <");
-        Console.WriteLine("_________________________________________________________________");
-        Console.WriteLine("\t\t    ----- PASSENGER TYPE -----");    
-        Console.WriteLine($"PASSENGER TYPE \t\t\t\t\t DISCOUNT");                            
-        Console.WriteLine($"> {passengerType} <\t\t\t\t\t > {discount:P1} < ");
-        Console.WriteLine("_________________________________________________________________");
-        Console.WriteLine("\t\t\t----- FARE -----");
-        Console.WriteLine($"BOUND TO: {currentLocation} > {destination}\nFARE AMOUNT: ₱ {finalFare:F2}");
-        Console.WriteLine("===================== HAVE A SAFE TRAVEL! =======================");
     }
 }
