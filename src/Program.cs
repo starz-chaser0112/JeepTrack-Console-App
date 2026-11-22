@@ -50,7 +50,7 @@ class Jeeptrack
             
             // Input Current Location
             Console.Write("Enter your current location (enter \"exit\" to quit): ");
-            currentLocation = Console.ReadLine()?? "".ToUpper();
+            currentLocation = (Console.ReadLine()?? "").ToUpper();
             Console.WriteLine();
 
             // Location Validation
@@ -87,7 +87,7 @@ class Jeeptrack
 
             // Input Destination
             Console.Write("Enter your destination (enter \"exit\" to quit): ");
-            destination = Console.ReadLine()?? "".ToUpper();
+            destination = (Console.ReadLine()?? "").ToUpper();
             Console.WriteLine();
 
             // Location Validation
@@ -96,7 +96,7 @@ class Jeeptrack
 
             if(destination == currentLocation)
                 {
-                    Console.WriteLine("----- DESTINATION AND CURRENT LOCATION MUST BE DIFFERENT! -----");
+                    Console.WriteLine("   ----- DESTINATION AND CURRENT LOCATION MUST BE DIFFERENT! -----");
                     Console.WriteLine();
                     continue;
                 }
@@ -120,11 +120,12 @@ class Jeeptrack
             {
                 break;
             }              
-            Console.WriteLine("/t/t/t ----- LOCATION NOT FOUND! -----");
+            Console.WriteLine("\t\t ----- LOCATION NOT FOUND! -----");
+            Console.WriteLine();
         }
         
         // Validating Route
-        string routes = currentLocation + ("-") + destination;
+        string routes = currentLocation + "-" + destination;
         float travelDistance;
         int travelTime;
 
@@ -205,7 +206,7 @@ class Jeeptrack
             PassengerTypes();
 
             Console.Write("Enter passenger type: ");
-            passengerType = Console.ReadLine()?? "".ToUpper();
+            passengerType = (Console.ReadLine()?? "").ToUpper();
 
             bool validPassenger = false; 
 
@@ -222,6 +223,7 @@ class Jeeptrack
             {
                 break;
             }
+                Console.WriteLine();
                 Console.WriteLine("\t     ----- INVALID PASSENGER TYPE! -----");
                 Console.WriteLine();
             
