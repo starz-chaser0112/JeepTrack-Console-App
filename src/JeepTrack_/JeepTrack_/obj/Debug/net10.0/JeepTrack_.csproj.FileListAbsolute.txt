@@ -1,0 +1,17 @@
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\bin\Debug\net10.0\JeepTrack_.exe
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\bin\Debug\net10.0\JeepTrack_.deps.json
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\bin\Debug\net10.0\JeepTrack_.runtimeconfig.json
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\bin\Debug\net10.0\JeepTrack_.runtimeconfig.dev.json
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\bin\Debug\net10.0\JeepTrack_.dll
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\bin\Debug\net10.0\JeepTrack_.pdb
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\JeepTrack_.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\JeepTrack_.AssemblyInfoInputs.cache
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\JeepTrack_.AssemblyInfo.cs
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\JeepTrack_.csproj.CoreCompileInputs.cache
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\JeepTrack_.sourcelink.json
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\JeepTrack_.dll
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\refint\JeepTrack_.dll
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\JeepTrack_.pdb
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\JeepTrack_.genruntimeconfig.cache
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\ref\JeepTrack_.dll
+C:\Users\TRISHALYN\Downloads\ITEC 102 Final Project - JeepTrack\src\JeepTrack_\JeepTrack_\obj\Debug\net10.0\JeepTrack_.csproj.Up2Date

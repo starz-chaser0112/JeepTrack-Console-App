@@ -45,23 +45,21 @@ class Jeeptrack
 
     static bool RouteValidation(string origin, string destination, ref double travelDistance, ref double travelTime)
     {
-        string[] fromLocations = { "MAAHAS", "SAN ANTONIO", "BATONG MALAKI", "BATONG MALAKI", "ANOS", "TIMUGAN", "BAMBANG HIGHWAY" };
-        string[] toLocations = { "SAN ANTONIO", "BATONG MALAKI", "UPLB", "ANOS", "TIMUGAN", "BAMBANG HIGHWAY", "LALAKAY" };
-        double[] mainDistances = { 4.7, 4.0, 2.2, 6.8, 1.7, 3.2, 6.3 };
-        double[] reverseDistances = { 1.3, 4.0, 2.2, 6.8, 1.7, 3.2, 4.4 };
-        double[] maintravelTime = { 9.0, 15.0, 6.0, 15.0, 5.0, 5.0, 16.0 };
+        string[] fromLocations = {"MAAHAS", "SAN ANTONIO", "BATONG MALAKI", "BATONG MALAKI", "ANOS", "TIMUGAN", "BAMBANG HIGHWAY"};
+        string[] toLocations = { "SAN ANTONIO", "BATONG MALAKI", "UPLB", "ANOS", "TIMUGAN", "BAMBANG HIGHWAY", "LALAKAY"};
+        double[] mainDistances = { 4.7, 4.0, 2.2, 6.8, 1.7, 3.2, 6.3};
+        double[] reverseDistances = { 1.3, 4.0, 2.2, 6.8, 1.7, 3.2, 4.4};
+        double[] maintravelTime = {9.0, 15.0, 6.0, 15.0, 5.0, 5.0, 16.0};
         double[] reversetravelTime = { 3.0, 15.0, 9.0, 15.0, 5.0, 5.0, 9.0 };
 
         for (int i = 0; i < fromLocations.Length; i++)
         {
-            if (fromLocations[i] == origin && toLocations[i] == destination)
-            {
+            if (fromLocations[i] == origin && toLocations[i] == destination) {
                 travelDistance = mainDistances[i];
                 travelTime = maintravelTime[i];
                 return true;
             }
-            else if (fromLocations[i] == destination && toLocations[i] == origin)
-            {
+            else if (fromLocations[i] == destination && toLocations[i] == origin){
                 travelDistance = reverseDistances[i];
                 travelTime = reversetravelTime[i];
                 return true;
@@ -70,7 +68,7 @@ class Jeeptrack
         }
         return false;
     }
-
+    
 
     // Main Program
     static void Main()
@@ -83,7 +81,7 @@ class Jeeptrack
             // Display Welcome Message
             WelcomeMessage();
 
-
+            
             string origin;
             string destination;
 
